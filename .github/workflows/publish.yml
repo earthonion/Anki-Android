@@ -42,8 +42,8 @@ jobs:
 
       - name: GIT Setup
         run: |
-          git config --global user.name 'Mike Hardy'
-          git config --global user.email 'github@mikehardy.net'
+          git config --global user.name 'earthonion'
+          git config --global user.email 'ankipatch@satanic.lol'
           git remote set-url origin git@github.com:$GITHUB_REPOSITORY
         shell: bash
 
