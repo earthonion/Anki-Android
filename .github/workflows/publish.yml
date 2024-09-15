@@ -57,11 +57,9 @@ jobs:
           echo "KEYALIAS=nrkeystorealias" >> $GITHUB_ENV
           echo "KEYSTOREPWD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
           echo "KEYPWD=${{ secrets.KEYSTORE_KEY_PASSWORD }}" >> $GITHUB_ENV
-          mkdir ~/src
+          mkdir -p ~/src
           cd ~/src
-          echo "${{ secrets.RELEASES_PUBLISH_TOKEN }}" | base64 -d > ./my-github-personal-access-token.gz
-          echo "${{ secrets.KEYSTORE }}" | base64 -d > ./android-keystore.gz
-          gunzip *.gz
+          echo "${{ secrets.KEYSTORE }}" | base64 -d > ./android-keystore
         shell: bash
 
       - name: Build and Release public release
