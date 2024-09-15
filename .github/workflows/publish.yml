@@ -54,7 +54,7 @@ jobs:
       - name: Credential Prep
         run: |
           echo "KEYSTOREPATH=$HOME/src/android-keystore" >> $GITHUB_ENV
-          echo "KEYALIAS=nrkeystorealias" >> $GITHUB_ENV
+          echo "KEYALIAS=my-key-alias" >> $GITHUB_ENV
           echo "KEYSTOREPWD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
           echo "KEYPWD=${{ secrets.KEYSTORE_KEY_PASSWORD }}" >> $GITHUB_ENV
           mkdir -p ~/src
