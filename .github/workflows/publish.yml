@@ -59,7 +59,7 @@ jobs:
           echo "KEYPWD=${{ secrets.KEYSTORE_KEY_PASSWORD }}" >> $GITHUB_ENV
           mkdir -p ~/src
           cd ~/src
-          echo "${{ secrets.KEYSTORE }}" | base64 -d > ./android-keystore
+          echo "${{ secrets.KEYSTORE }}" | base64 -d > $HOME/src/android-keystore
         shell: bash
 
       - name: Build and Release public release
