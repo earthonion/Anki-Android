@@ -105,13 +105,13 @@ git tag v"$VERSION"
 # Build signed APK using Gradle and publish to Play.
 # Do this before building universal of the play flavor so the universal is not uploaded to Play Store
 # Configuration for pushing to Play specified in build.gradle.kts 'play' task
-echo "Running 'publishPlayReleaseApk' gradle target"
-./gradlew --stop
-if ! ./gradlew publishPlayReleaseApk
-then
+#echo "Running 'publishPlayReleaseApk' gradle target"
+#./gradlew --stop
+#if ! ./gradlew publishPlayReleaseApk
+#then
   # APK contains problems, abort release
-  exit 1
-fi
+#  exit 1
+#fi
 
 # If the Play Store accepted the builds, the version bump should be pushed / made concrete
 git push
