@@ -429,20 +429,20 @@ abstract class AbstractFlashcardViewer :
                             answerCard(Consts.BUTTON_ONE)
                         }
 
-                        R.id.flashcard_layout_ease2 -> {
-                            Timber.i("AbstractFlashcardViewer:: EASE_2 pressed")
-                            answerCard(Consts.BUTTON_TWO)
-                        }
+                        //R.id.flashcard_layout_ease2 -> {
+                            //Timber.i("AbstractFlashcardViewer:: EASE_2 pressed")
+                            //answerCard(Consts.BUTTON_TWO)
+//                        }
 
                         R.id.flashcard_layout_ease3 -> {
                             Timber.i("AbstractFlashcardViewer:: EASE_3 pressed")
                             answerCard(Consts.BUTTON_THREE)
                         }
 
-                        R.id.flashcard_layout_ease4 -> {
-                            Timber.i("AbstractFlashcardViewer:: EASE_4 pressed")
-                            answerCard(Consts.BUTTON_FOUR)
-                        }
+                        //R.id.flashcard_layout_ease4 -> {
+                            //Timber.i("AbstractFlashcardViewer:: EASE_4 pressed")
+                            //answerCard(Consts.BUTTON_FOUR)
+//                        }
 
                         else -> currentEase = 0
                     }
