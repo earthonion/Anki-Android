@@ -60,7 +60,7 @@ jobs:
           mkdir -p ~/src
           cd ~/src
           echo "${{ secrets.KEYSTORE }}" | base64 -d > $HOME/src/android-keystore
-          echo "${{ secrets.GITHUB_TOKEN }}" | base64 -d > $HOME/src/my-github-personal-access-token
+          echo "${{ secrets.GITHUB_TOKEN }}" | base64 | base64 -d > $HOME/src/my-github-personal-access-token
         shell: bash
 
       - name: Build and Release public release
