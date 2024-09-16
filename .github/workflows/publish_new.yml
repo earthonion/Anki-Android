@@ -1,0 +1,98 @@
+name: Publish New
+
+on:
+  workflow_dispatch:
+    inputs:
+      public:
+        description: "any non-empty value triggers a public build - version not auto-incremented / changelog required"
+        required: false
+        type: string
+
+jobs:
+  release_app:
+    name: 'Release App'
+    timeout-minutes: 120
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        name: Gradle Cache
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ hashFiles('**/*.gradle*') }}-v1
+
+      - name: Configure JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "21"
+
+      - name: Install Release Utilities
+        run: |
+          mkdir ~/bin/
+          curl -L -o ~/bin/github-release.bz2 https://github.com/github-release/github-release/releases/download/v0.10.0/linux-amd64-github-release.bz2
+          cd ~/bin
+          bunzip2 github-release.bz2
+          chmod 755 ~/bin/github-release
+          gem install asciidoctor
+        shell: bash
+
+      - name: GIT Setup
+        run: |
+          git config --global user.name 'earthonion'
+          git config --global user.email 'ankipatch@satanic.lol'
+          git remote set-url origin git@github.com:$GITHUB_REPOSITORY
+        shell: bash
+
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Prepare Credentials
+        run: |
+          echo "KEYSTOREPATH=$HOME/src/android-keystore" >> $GITHUB_ENV
+          echo "KEYALIAS=my-key-alias" >> $GITHUB_ENV
+          echo "KEYSTOREPWD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEYPWD=${{ secrets.KEYSTORE_KEY_PASSWORD }}" >> $GITHUB_ENV
+          mkdir -p ~/src
+          cd ~/src
+          echo "${{ secrets.KEYSTORE }}" | base64 -d > $HOME/src/android-keystore
+        shell: bash
+
+      - name: Build APKs
+        run: |
+          ./gradlew assembleRelease
+        shell: bash
+
+      - name: Create GitHub Draft Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "v1.0.0" # Dynamically use the actual version tag
+          release_name: "Release v1.0.0" # Replace with the actual version name
+          draft: false
+          prerelease: false
+
+      - name: Upload APKs to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./AnkiDroid/build/outputs/apk/release/AnkiDroid-release.apk
+          asset_name: AnkiDroid-release.apk
+          asset_content_type: application/vnd.android.package-archive
+
+      - name: Upload Additional Files (if needed)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./it_worked.txt # Example of an additional file
+          asset_name: it_worked.txt
+          asset_content_type: text/plain
