@@ -932,24 +932,24 @@ abstract class AbstractFlashcardViewer :
             findViewById(R.id.ease1),
             findViewById(R.id.nextTime1)
         ).apply { setListeners(easeHandler) }
-        easeButton2 = EaseButton(
-            EASE_2,
-            findViewById(R.id.flashcard_layout_ease2),
-            findViewById(R.id.ease2),
-            findViewById(R.id.nextTime2)
-        ).apply { setListeners(easeHandler) }
+        //easeButton2 = EaseButton(
+            //EASE_2,
+            //findViewById(R.id.flashcard_layout_ease2),
+            //findViewById(R.id.ease2),
+            //findViewById(R.id.nextTime2)
+        //).apply { setListeners(easeHandler) }
         easeButton3 = EaseButton(
             EASE_3,
             findViewById(R.id.flashcard_layout_ease3),
             findViewById(R.id.ease3),
             findViewById(R.id.nextTime3)
         ).apply { setListeners(easeHandler) }
-        easeButton4 = EaseButton(
-            EASE_4,
-            findViewById(R.id.flashcard_layout_ease4),
-            findViewById(R.id.ease4),
-            findViewById(R.id.nextTime4)
-        ).apply { setListeners(easeHandler) }
+        //easeButton4 = EaseButton(
+            //EASE_4,
+            //findViewById(R.id.flashcard_layout_ease4),
+            //findViewById(R.id.ease4),
+            //findViewById(R.id.nextTime4)
+        //).apply { setListeners(easeHandler) }
         if (!showNextReviewTime) {
             easeButton1!!.hideNextReviewTime()
             easeButton2!!.hideNextReviewTime()
