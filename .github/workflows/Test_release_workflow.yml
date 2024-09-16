@@ -1,0 +1,49 @@
+name: Test Release Process
+
+on:
+  workflow_dispatch:
+    inputs:
+      public:
+        description: "any non-empty value triggers a public build - version not auto-incremented / changelog required"
+        required: false
+        type: string
+
+jobs:
+  test_release_process:
+    name: 'Test Release Process'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: GIT Setup
+        run: |
+          git config --global user.name 'earthonion'
+          git config --global user.email 'ankipatch@satanic.lol'
+          git remote set-url origin git@github.com:$GITHUB_REPOSITORY
+        shell: bash
+
+      - name: Create Test File
+        run: |
+          echo "The release process worked!" > it_worked.txt
+        shell: bash
+
+      - name: Create GitHub Draft Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "v0.0.1-test" # Mock tag for testing purposes
+          release_name: "Test Release v0.0.1"
+          draft: true # Create a draft release to avoid publishing
+          prerelease: true # Mark it as a pre-release (optional)
+
+      - name: Upload File to Release
+        run: |
+          echo "Uploading it_worked.txt to the GitHub release..."
+          github-release upload --tag "v0.0.1-test" --name "it_worked.txt" --file "it_worked.txt"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
