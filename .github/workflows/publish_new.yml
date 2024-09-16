@@ -36,6 +36,8 @@ jobs:
           cd ~/bin
           bunzip2 github-release.bz2
           chmod 755 ~/bin/github-release
+          sudo chown -R $USER /var/lib/gems/
+          sudo chown -R $USER /usr/local/bin
           gem install asciidoctor
         shell: bash
 
