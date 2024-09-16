@@ -24,6 +24,16 @@ jobs:
           git remote set-url origin git@github.com:$GITHUB_REPOSITORY
         shell: bash
 
+      - name: Install github-release tool
+        run: |
+          mkdir -p ~/bin/
+          curl -L -o ~/bin/github-release.bz2 https://github.com/github-release/github-release/releases/download/v0.10.0/linux-amd64-github-release.bz2
+          cd ~/bin
+          bunzip2 github-release.bz2
+          chmod +x ~/bin/github-release
+          export PATH=~/bin:$PATH
+        shell: bash
+
       - name: Create Test File
         run: |
           echo "The release process worked!" > it_worked.txt
@@ -35,10 +45,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "v0.0.1-test" # Mock tag for testing purposes
+          tag_name: "v0.0.1-test"
           release_name: "Test Release v0.0.1"
-          draft: true # Create a draft release to avoid publishing
-          prerelease: true # Mark it as a pre-release (optional)
+          draft: true
+          prerelease: true
 
       - name: Upload File to Release
         run: |
