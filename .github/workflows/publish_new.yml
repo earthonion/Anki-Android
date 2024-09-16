@@ -61,23 +61,27 @@ jobs:
           echo "${{ secrets.KEYSTORE }}" | base64 -d > $HOME/src/android-keystore
         shell: bash
 
-      - name: Build APKs
+      - name: Run Release Script
         run: |
-          ./gradlew assembleRelease
+          if [ "${{ github.event.inputs.public }}" != "" ]; then
+            ./tools/release.sh public
+          else
+            ./tools/release.sh
+          fi
         shell: bash
 
-      - name: Create GitHub Draft Release
+      - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "v1.0.0" # Dynamically use the actual version tag
-          release_name: "Release v1.0.0" # Replace with the actual version name
+          tag_name: "v1.0.0" # Dynamically set the actual tag version
+          release_name: "Release v1.0.0"
           draft: false
           prerelease: false
 
-      - name: Upload APKs to Release
+      - name: Upload APKs to GitHub Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
