@@ -108,7 +108,7 @@
             </LinearLayout>
 
             
-
+        </LinearLayout>
         <FrameLayout
             android:id="@+id/flashcard_layout_flip"
             android:layout_width="match_parent"
