@@ -74,8 +74,12 @@ jobs:
           git clone git@github.com:ankidroid/ankidroiddocs
           popd
           ./tools/release.sh public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
 
       - name: Build and Release test release
         if: "${{ github.event.inputs.public == '' }}"
         run: ./tools/release.sh
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
