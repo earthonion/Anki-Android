@@ -89,8 +89,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./AnkiDroid/build/outputs/apk/release/AnkiDroid-release.apk
-          asset_name: AnkiDroid-release.apk
+          asset_path: ./AnkiDroid/build/outputs/apk/full/release/AnkiDroid-full-universal-release.apk #./AnkiDroid/build/outputs/apk/release/AnkiDroid-release.apk
+          asset_name: AnkiDroid-full-universal-release.apk
           asset_content_type: application/vnd.android.package-archive
 
       - name: Upload Additional Files (if needed)
