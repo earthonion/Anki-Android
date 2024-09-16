@@ -193,15 +193,15 @@ done
 #fi
 
 # Now that Git is clean and the main release is done, run the parallel release script and upload them
-echo "Running parallel package build"
-./gradlew --stop
-./tools/parallel-package-release.sh "$VERSION"
-if [ "$PUBLIC" = "public" ]; then
-  BUILDNAMES='A B C D E' # For public builds we will post all parallels
-else
-  BUILDNAMES='A B' # For alpha releases just post a couple parallel builds
-fi
-for BUILD in $BUILDNAMES; do
-  echo "Adding parallel build $BUILD to Github release"
-  github-release upload --tag v"$VERSION" --name AnkiDroid-"$VERSION".parallel."$BUILD".apk --file AnkiDroid-"$VERSION".parallel."$BUILD".apk
-done
+#echo "Running parallel package build"
+#./gradlew --stop
+#./tools/parallel-package-release.sh "$VERSION"
+#if [ "$PUBLIC" = "public" ]; then
+#  BUILDNAMES='A B C D E' # For public builds we will post all parallels
+#else
+#  BUILDNAMES='A B' # For alpha releases just post a couple parallel builds
+#fi
+#for BUILD in $BUILDNAMES; do
+#  echo "Adding parallel build $BUILD to Github release"
+#  github-release upload --tag v"$VERSION" --name AnkiDroid-"$VERSION".parallel."$BUILD".apk --file AnkiDroid-"$VERSION".parallel."$BUILD".apk
+#done
