@@ -142,32 +142,32 @@ for FLAVOR in $FLAVORS; do
 done
 
 # Push to Github Releases.
-GITHUB_TOKEN=${GITHUB_TOKEN}#$(cat ~/src/my-github-personal-access-token)
-export GITHUB_TOKEN
-export GITHUB_USER="earthonion"
-export GITHUB_REPO="Anki-Android"
+#GITHUB_TOKEN=${GITHUB_TOKEN}#$(cat ~/src/my-github-personal-access-token)
+#export GITHUB_TOKEN
+#export GITHUB_USER="earthonion"
+#export GITHUB_REPO="Anki-Android"
 
-if [ "$PUBLIC" = "public" ]; then
-  PRE_RELEASE=""
-else
-  PRE_RELEASE="--pre-release"
-fi
+#if [ "$PUBLIC" = "public" ]; then
+#  PRE_RELEASE=""
+#else
+#  PRE_RELEASE="--pre-release"
+#fi
 
-echo "Creating new Github release"
-github-release release --tag v"$VERSION" --name "AnkiDroid $VERSION" --description "This is the release." $PRE_RELEASE
+#echo "Creating new Github release"
+#github-release release --tag v"$VERSION" --name "AnkiDroid $VERSION" --description "This is the release." $PRE_RELEASE
 
 echo "Sleeping 30s to make sure the release exists, see issue 11746"
 sleep 30
 
-for ABI in $ABIS; do
-  echo "Adding full APK for $ABI to Github release"
-  github-release upload --tag v"$VERSION" --name AnkiDroid-"$VERSION"-"$ABI".apk --file AnkiDroid-"$VERSION"-"$ABI".apk
-done
+#for ABI in $ABIS; do
+#  echo "Adding full APK for $ABI to Github release"
+#  github-release upload --tag v"$VERSION" --name AnkiDroid-"$VERSION"-"$ABI".apk --file AnkiDroid-"$VERSION"-"$ABI".apk
+#done
 # Copy flavor universal APKs to cwd
-for FLAVOR in $FLAVORS; do
-  echo "Adding universal APK for $FLAVOR to Github release"
-  github-release upload --tag v"$VERSION" --name AnkiDroid-"$VERSION"-"$FLAVOR"-universal.apk --file AnkiDroid-"$VERSION"-"$FLAVOR"-universal.apk
-done
+#for FLAVOR in $FLAVORS; do
+#  echo "Adding universal APK for $FLAVOR to Github release"
+#  github-release upload --tag v"$VERSION" --name AnkiDroid-"$VERSION"-"$FLAVOR"-universal.apk --file AnkiDroid-"$VERSION"-"$FLAVOR"-universal.apk
+#done
 
 # Not publishing to amazon pending: https://github.com/ankidroid/Anki-Android/issues/14161
 #if [ "$PUBLIC" = "public" ]; then
