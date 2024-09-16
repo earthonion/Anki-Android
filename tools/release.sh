@@ -142,7 +142,7 @@ for FLAVOR in $FLAVORS; do
 done
 
 # Push to Github Releases.
-GITHUB_TOKEN=$(GITHUB_TOKEN)#$(cat ~/src/my-github-personal-access-token)
+GITHUB_TOKEN=${GITHUB_TOKEN}#$(cat ~/src/my-github-personal-access-token)
 export GITHUB_TOKEN
 export GITHUB_USER="earthonion"
 export GITHUB_REPO="Anki-Android"
