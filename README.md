@@ -13,7 +13,7 @@
 <a href="https://discord.gg/qjzcRTx"><img src="https://img.shields.io/discord/368267295601983490"></img></a>
 <a href="https://github.com/ankidroid/Anki-Android/blob/main/COPYING"><img src="https://img.shields.io/github/license/ankidroid/Anki-Android" alt="license"/></a>
 
-# AnkiDroid
+# AnkiDroid (FORK 🍴)
 
 this fork removes the "hard" and "easy" buttons. might make it a setting later idk
 
@@ -45,21 +45,7 @@ A semi-official port of the open source [Anki](https://apps.ankiweb.net/index.ht
 
 Install
 ---------
-<div style="display:flex;">
-
-<a href="https://play.google.com/store/apps/details?id=com.ichi2.anki&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
-    <img alt="Get it on Google Play" height="80"
-        src="docs/graphics/logos/google-badge.png" /></a>
-
-<a href="https://f-droid.org/repository/browse/?fdid=com.ichi2.anki">
-    <img alt="Get it on F-Droid" height="80"
-        src="docs/graphics/logos/f-droid-badge.png"></a>
-
-<a href="http://www.amazon.com/gp/product/B004L1G7T2/ref=mas_pm_ankidroid_flashcards">
-    <img alt="Get it on Amazon app store" height="80"
-        src="docs/graphics/logos/amazon-badge.png"/></a>
-
-</div>
+get the apk from the release section here on github!
 
 Wiki
 ----
