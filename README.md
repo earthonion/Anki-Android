@@ -15,9 +15,8 @@
 
 # AnkiDroid (FORK 🍴)
 
-this fork removes the "hard" and "easy" buttons. might make it a setting later idk
+this fork removes the "hard" and "easy" buttons.
 
-also might add a heatmap to show how often you use anki.
 
 ---- 
 
