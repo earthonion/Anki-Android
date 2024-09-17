@@ -938,13 +938,13 @@ open class Reviewer :
         val textColor = getTextColors(this)
         easeButton1!!.setVisibility(View.VISIBLE)
         easeButton1!!.setColor(background[0])
-        easeButton4!!.setColor(background[3])
+        //!!.setColor(background[3])
         // Ease 2 is "hard"
-        easeButton2!!.setup(background[1], textColor[1], R.string.ease_button_hard)
-        easeButton2!!.requestFocus()
+        //!!.setup(background[1], textColor[1], R.string.ease_button_hard)
+        //!!.requestFocus()
         // Ease 3 is good
         easeButton3!!.setup(background[2], textColor[2], R.string.ease_button_good)
-        easeButton4!!.setVisibility(View.VISIBLE)
+        //!!.setVisibility(View.VISIBLE)
         easeButton3!!.requestFocus()
 
         // Show next review time
@@ -953,9 +953,9 @@ open class Reviewer :
             launchCatchingTask {
                 val labels = withCol { sched.describeNextStates(state.states) }
                 easeButton1!!.nextTime = labels[0]
-                easeButton2!!.nextTime = labels[1]
+                //!!.nextTime = labels[1]
                 easeButton3!!.nextTime = labels[2]
-                easeButton4!!.nextTime = labels[3]
+                //!!.nextTime = labels[3]
             }
         }
     }
@@ -1611,9 +1611,9 @@ open class Reviewer :
             lrnCardCount = queueState?.counts?.lrn ?: -1
             revCardCount = queueState?.counts?.rev ?: -1
             nextTime1 = easeButton1!!.nextTime
-            nextTime2 = easeButton2!!.nextTime
+            //nextTime2 = //!!.nextTime
             nextTime3 = easeButton3!!.nextTime
-            nextTime4 = easeButton4!!.nextTime
+            //nextTime4 = //!!.nextTime
             eta = this@Reviewer.eta
         }
         return cardDataForJsAPI
